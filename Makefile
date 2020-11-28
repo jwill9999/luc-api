@@ -1,5 +1,7 @@
 start:
 	symfony server:start
+stop:
+	symfony server:stop
 tests:
 	php ./phpunit
 db-up:
