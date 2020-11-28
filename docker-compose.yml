@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin.local
+    links:
+      - mysql
+    restart: always
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: database.local
+      PMA_PORT: 3306
+
+  mysql:
+    build:
+      context: .
+      dockerfile: ./MySQL.Dockerfile
+    container_name: database.local
+    restart: always
+    environment:
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: embark
+    ports:
+      - "3306:3306"
+
